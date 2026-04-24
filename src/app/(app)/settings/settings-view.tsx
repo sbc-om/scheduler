@@ -95,7 +95,7 @@ function ProfileTab({ me }: { me: Me }) {
             className="grid h-14 w-14 shrink-0 place-items-center rounded-full text-lg font-semibold text-white"
             style={{
               background:
-                "linear-gradient(135deg, hsl(250 85% 60%), hsl(217 85% 50%))",
+                "linear-gradient(135deg, hsl(46 100% 55%), hsl(36 100% 48%))",
             }}
           >
             {(fullName || email).trim().charAt(0).toUpperCase() || "U"}

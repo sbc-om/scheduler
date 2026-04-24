@@ -66,15 +66,29 @@ export async function listUserNotifications(input: {
   tenantId: string;
   userId: string;
   limit?: number;
+  offset?: number;
 }): Promise<InAppNotificationRow[]> {
   return queryRows<InAppNotificationRow>(
     `SELECT *
        FROM in_app_notifications
       WHERE tenant_id = $1 AND user_id = $2
       ORDER BY created_at DESC
-      LIMIT $3`,
-    [input.tenantId, input.userId, input.limit ?? 50],
+      LIMIT $3 OFFSET $4`,
+    [input.tenantId, input.userId, input.limit ?? 50, input.offset ?? 0],
   );
+}
+
+export async function countUserNotifications(input: {
+  tenantId: string;
+  userId: string;
+}): Promise<number> {
+  const r = await queryOne<{ count: string }>(
+    `SELECT COUNT(*)::text AS count
+       FROM in_app_notifications
+      WHERE tenant_id = $1 AND user_id = $2`,
+    [input.tenantId, input.userId],
+  );
+  return Number(r?.count ?? 0);
 }
 
 export async function unreadNotificationCount(input: {

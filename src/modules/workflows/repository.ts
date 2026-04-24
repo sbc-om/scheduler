@@ -36,11 +36,27 @@ function checksumOf(def: WorkflowDefinition): string {
   return createHash("sha256").update(JSON.stringify(def)).digest("hex");
 }
 
-export async function listWorkflows(tenantId: string): Promise<WorkflowRow[]> {
+export async function listWorkflows(
+  tenantId: string,
+  opts: { limit?: number; offset?: number } = {},
+): Promise<WorkflowRow[]> {
+  const limit = opts.limit ?? 100;
+  const offset = opts.offset ?? 0;
   return queryRows<WorkflowRow>(
-    `SELECT * FROM workflows WHERE tenant_id = $1 ORDER BY updated_at DESC`,
+    `SELECT * FROM workflows
+      WHERE tenant_id = $1
+      ORDER BY updated_at DESC
+      LIMIT $2 OFFSET $3`,
+    [tenantId, limit, offset],
+  );
+}
+
+export async function countWorkflows(tenantId: string): Promise<number> {
+  const r = await queryOne<{ count: string }>(
+    `SELECT COUNT(*)::text AS count FROM workflows WHERE tenant_id = $1`,
     [tenantId],
   );
+  return Number(r?.count ?? 0);
 }
 
 export async function getWorkflow(

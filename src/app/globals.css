@@ -3,72 +3,77 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: 220 33% 97%;
-  --foreground: 224 32% 14%;
-  --muted: 220 28% 94%;
-  --muted-foreground: 220 12% 42%;
+  /* Warm cream canvas + near-black ink + saturated amber accent.
+     The goal is an editorial, high-contrast look that reads as premium
+     rather than generic Tailwind. */
+  --background: 44 38% 96%;
+  --foreground: 0 0% 8%;
+  --muted: 42 22% 91%;
+  --muted-foreground: 0 0% 38%;
   --card: 0 0% 100%;
-  --card-foreground: 224 32% 14%;
+  --card-foreground: 0 0% 8%;
   --popover: 0 0% 100%;
-  --popover-foreground: 224 32% 14%;
-  --border: 220 22% 90%;
-  --input: 220 22% 90%;
-  --ring: 250 83% 60%;
-  --primary: 250 83% 60%;
-  --primary-foreground: 0 0% 100%;
-  --primary-soft: 248 100% 97%;
-  --secondary: 220 28% 95%;
-  --secondary-foreground: 224 32% 16%;
-  --accent: 220 28% 95%;
-  --accent-foreground: 224 32% 16%;
-  --destructive: 0 72% 51%;
+  --popover-foreground: 0 0% 8%;
+  --border: 40 18% 85%;
+  --input: 40 18% 85%;
+  --ring: 46 100% 50%;
+  --primary: 46 100% 50%;
+  --primary-foreground: 0 0% 8%;
+  --primary-soft: 48 100% 92%;
+  --secondary: 42 26% 92%;
+  --secondary-foreground: 0 0% 10%;
+  --accent: 42 26% 90%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 4 80% 52%;
   --destructive-foreground: 0 0% 100%;
-  --success: 152 65% 38%;
+  --success: 152 62% 38%;
   --success-foreground: 0 0% 100%;
-  --warning: 38 92% 45%;
-  --warning-foreground: 0 0% 100%;
-  --info: 217 91% 55%;
+  --warning: 26 95% 52%;
+  --warning-foreground: 0 0% 10%;
+  --info: 215 16% 38%;
   --info-foreground: 0 0% 100%;
-  --radius: 0.9rem;
+  --radius: 0.55rem;
 
-  --sidebar-bg: 220 30% 98.5%;
-  --sidebar-border: 220 22% 88%;
-  --sidebar-foreground: 224 26% 18%;
-  --sidebar-active: 250 83% 60%;
+  /* Dark sidebar even in light mode — a signature Linear/Arc pattern that
+     instantly distances the product from stock Tailwind admin templates. */
+  --sidebar-bg: 0 0% 6%;
+  --sidebar-border: 0 0% 14%;
+  --sidebar-foreground: 40 18% 90%;
+  --sidebar-active: 46 100% 55%;
 }
 
 .dark {
-  --background: 224 36% 6%;
-  --foreground: 220 15% 95%;
-  --muted: 224 25% 13%;
-  --muted-foreground: 220 10% 62%;
-  --card: 224 32% 9%;
-  --card-foreground: 220 15% 95%;
-  --popover: 224 32% 9%;
-  --popover-foreground: 220 15% 95%;
-  --border: 224 25% 17%;
-  --input: 224 25% 17%;
-  --ring: 250 90% 68%;
-  --primary: 250 90% 68%;
-  --primary-foreground: 224 36% 6%;
-  --primary-soft: 250 50% 16%;
-  --secondary: 224 25% 14%;
-  --secondary-foreground: 220 15% 95%;
-  --accent: 224 25% 16%;
-  --accent-foreground: 220 15% 95%;
-  --destructive: 0 70% 55%;
+  --background: 0 0% 4%;
+  --foreground: 40 14% 94%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 40 8% 62%;
+  --card: 0 0% 7%;
+  --card-foreground: 40 14% 94%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 40 14% 94%;
+  --border: 0 0% 14%;
+  --input: 0 0% 14%;
+  --ring: 46 100% 58%;
+  --primary: 46 100% 58%;
+  --primary-foreground: 0 0% 6%;
+  --primary-soft: 46 70% 14%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 40 14% 94%;
+  --accent: 0 0% 12%;
+  --accent-foreground: 40 14% 94%;
+  --destructive: 4 78% 58%;
   --destructive-foreground: 0 0% 100%;
-  --success: 152 60% 48%;
-  --success-foreground: 0 0% 100%;
-  --warning: 38 90% 55%;
-  --warning-foreground: 224 36% 6%;
-  --info: 217 91% 65%;
-  --info-foreground: 0 0% 100%;
+  --success: 152 58% 50%;
+  --success-foreground: 0 0% 6%;
+  --warning: 28 95% 58%;
+  --warning-foreground: 0 0% 6%;
+  --info: 215 14% 68%;
+  --info-foreground: 0 0% 6%;
 
-  --sidebar-bg: 224 40% 5%;
-  --sidebar-border: 224 30% 14%;
-  --sidebar-foreground: 220 15% 75%;
-  --sidebar-active: 250 90% 72%;
+  --sidebar-bg: 0 0% 3%;
+  --sidebar-border: 0 0% 11%;
+  --sidebar-foreground: 40 14% 78%;
+  --sidebar-active: 46 100% 58%;
 }
 
 @theme inline {
@@ -154,18 +159,21 @@
   }
 
   .app-bg {
+    /* Warm cream canvas with a single amber bloom in the corner and subtle
+       diagonal cream wash. No muddy blue radials — the colour story is
+       strictly black / cream / amber. */
     background:
-      radial-gradient(1100px 560px at 110% -10%, hsl(var(--primary) / 0.12), transparent 58%),
-      radial-gradient(860px 460px at -10% 115%, hsl(var(--info) / 0.08), transparent 55%),
-      linear-gradient(180deg, hsl(0 0% 100% / 0.72), transparent 24%),
-      linear-gradient(135deg, hsl(220 33% 98.8%), hsl(220 35% 95.8%));
+      radial-gradient(1200px 620px at 108% -14%, hsl(46 100% 58% / 0.22), transparent 60%),
+      radial-gradient(900px 520px at -12% 118%, hsl(0 0% 0% / 0.05), transparent 60%),
+      linear-gradient(180deg, hsl(44 45% 98% / 0.85), transparent 30%),
+      linear-gradient(135deg, hsl(44 40% 97%), hsl(42 28% 93%));
   }
 
   .dark .app-bg {
     background:
-      radial-gradient(1100px 560px at 110% -10%, hsl(var(--primary) / 0.16), transparent 58%),
-      radial-gradient(860px 460px at -10% 115%, hsl(var(--info) / 0.12), transparent 55%),
-      linear-gradient(180deg, hsl(0 0% 100% / 0.02), transparent 24%),
+      radial-gradient(1200px 620px at 108% -14%, hsl(46 100% 58% / 0.14), transparent 60%),
+      radial-gradient(900px 520px at -12% 118%, hsl(46 100% 55% / 0.05), transparent 60%),
+      linear-gradient(180deg, hsl(0 0% 100% / 0.015), transparent 24%),
       hsl(var(--background));
   }
 
@@ -189,10 +197,12 @@
   }
 
   .brand-bg {
+    /* Signature brand surface: amber glow over rich black, used on login and
+       marketing chrome to reinforce the palette. */
     background:
-      radial-gradient(800px 500px at 20% 20%, hsl(250 90% 70% / 0.6), transparent 60%),
-      radial-gradient(600px 400px at 80% 80%, hsl(217 91% 60% / 0.5), transparent 55%),
-      linear-gradient(135deg, hsl(250 60% 20%), hsl(225 55% 12%));
+      radial-gradient(820px 520px at 18% 18%, hsl(46 100% 58% / 0.55), transparent 60%),
+      radial-gradient(620px 420px at 82% 82%, hsl(40 100% 62% / 0.22), transparent 55%),
+      linear-gradient(135deg, hsl(0 0% 6%), hsl(0 0% 2%));
   }
 
   .card-hover {

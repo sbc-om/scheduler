@@ -1,19 +1,29 @@
 import Link from "next/link";
 import { Plus } from "lucide-react";
 import { requireSessionUser } from "@/lib/auth";
-import { listSchedules } from "@/modules/schedules/repository";
+import { listSchedules, countSchedules } from "@/modules/schedules/repository";
 import { PageHeader } from "@/components/app/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Table, THead, TBody, TR, TH, TD } from "@/components/ui/table";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { EmptyState } from "@/components/ui/empty-state";
+import { Pagination, parsePagination } from "@/components/ui/pagination";
 import { formatRelative } from "@/lib/utils";
 import { ScheduleRowActions } from "./row-actions";
 
-export default async function SchedulesPage() {
+export default async function SchedulesPage({
+  searchParams,
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = (await searchParams) ?? {};
   const user = await requireSessionUser();
-  const schedules = await listSchedules(user.tenantId);
+  const { page, pageSize } = parsePagination(sp, { defaultSize: 25, maxSize: 100 });
+  const [schedules, total] = await Promise.all([
+    listSchedules(user.tenantId, { limit: pageSize, offset: (page - 1) * pageSize }),
+    countSchedules(user.tenantId),
+  ]);
   return (
     <>
       <PageHeader
@@ -26,7 +36,7 @@ export default async function SchedulesPage() {
           </Button>
         }
       />
-      {schedules.length === 0 ? (
+      {total === 0 ? (
         <EmptyState
           title="No schedules yet"
           description="Create a schedule to run a workflow on cron, interval, or at a specific time."
@@ -82,6 +92,14 @@ export default async function SchedulesPage() {
                 ))}
               </TBody>
             </Table>
+            <Pagination
+              basePath="/schedules"
+              page={page}
+              pageSize={pageSize}
+              totalItems={total}
+              preservedParams={sp}
+              itemLabel="schedules"
+            />
           </CardContent>
         </Card>
       )}

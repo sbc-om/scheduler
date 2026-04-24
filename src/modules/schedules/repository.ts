@@ -50,11 +50,27 @@ export type CreateScheduleInput = {
   createdBy?: string | null;
 };
 
-export async function listSchedules(tenantId: string): Promise<ScheduleRow[]> {
+export async function listSchedules(
+  tenantId: string,
+  opts: { limit?: number; offset?: number } = {},
+): Promise<ScheduleRow[]> {
+  const limit = opts.limit ?? 100;
+  const offset = opts.offset ?? 0;
   return queryRows<ScheduleRow>(
-    `SELECT * FROM schedules WHERE tenant_id = $1 ORDER BY updated_at DESC`,
+    `SELECT * FROM schedules
+      WHERE tenant_id = $1
+      ORDER BY updated_at DESC
+      LIMIT $2 OFFSET $3`,
+    [tenantId, limit, offset],
+  );
+}
+
+export async function countSchedules(tenantId: string): Promise<number> {
+  const r = await queryOne<{ count: string }>(
+    `SELECT COUNT(*)::text AS count FROM schedules WHERE tenant_id = $1`,
     [tenantId],
   );
+  return Number(r?.count ?? 0);
 }
 
 export async function getSchedule(

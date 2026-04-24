@@ -129,7 +129,7 @@ export function Sidebar({
                           className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full"
                           style={{
                             background:
-                              "linear-gradient(180deg, hsl(250 90% 72%), hsl(217 91% 60%))",
+                              "linear-gradient(180deg, hsl(46 100% 60%), hsl(40 100% 50%))",
                           }}
                         />
                       ) : null}
@@ -163,7 +163,7 @@ export function Sidebar({
             className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-xs font-semibold text-white"
             style={{
               background:
-                "linear-gradient(135deg, hsl(250 85% 60%), hsl(217 85% 50%))",
+                "linear-gradient(135deg, hsl(46 100% 55%), hsl(36 100% 48%))",
             }}
           >
             {initial}
