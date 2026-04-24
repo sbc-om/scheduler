@@ -183,9 +183,27 @@
     box-shadow: 0 18px 40px -28px rgb(15 23 42 / 0.18), 0 4px 12px -8px rgb(15 23 42 / 0.08);
   }
 
+  .sidebar-surface {
+    background:
+      radial-gradient(520px 280px at 0% 0%, hsl(var(--sidebar-active) / 0.08), transparent 60%),
+      linear-gradient(180deg, hsl(var(--sidebar-bg)), hsl(var(--sidebar-bg)));
+    box-shadow:
+      inset -1px 0 0 hsl(var(--sidebar-border) / 0.85),
+      16px 0 36px -30px rgb(0 0 0 / 0.35);
+  }
+
   .dark .panel-surface {
     background: hsl(var(--card) / 0.9);
     box-shadow: 0 18px 42px -24px rgb(2 6 23 / 0.6), 0 6px 20px -12px rgb(2 6 23 / 0.5);
+  }
+
+  .dark .sidebar-surface {
+    background:
+      radial-gradient(560px 320px at 0% 0%, hsl(var(--sidebar-active) / 0.08), transparent 60%),
+      linear-gradient(180deg, hsl(var(--sidebar-bg)), hsl(var(--sidebar-bg)));
+    box-shadow:
+      inset -1px 0 0 hsl(var(--sidebar-border) / 0.9),
+      20px 0 44px -30px rgb(0 0 0 / 0.6);
   }
 
   .metric-card {

@@ -11,18 +11,23 @@ export function formatRelative(ts: string | Date | null | undefined): string {
   const diff = Date.now() - d.getTime();
   const abs = Math.abs(diff);
   const past = diff >= 0;
-  const units: [number, string][] = [
-    [60_000, "s"],
-    [3_600_000, "m"],
-    [86_400_000, "h"],
-    [604_800_000, "d"],
-  ];
-  if (abs < units[0][0]) return past ? "just now" : "soon";
+  if (abs < 60_000) return past ? "just now" : "soon";
+
+  const minutes = Math.floor(abs / 60_000);
+  const hours = Math.floor(abs / 3_600_000);
+  const days = Math.floor(abs / 86_400_000);
+
   let label = "";
-  if (abs < units[1][0]) label = `${Math.floor(abs / 1000)}s`;
-  else if (abs < units[2][0]) label = `${Math.floor(abs / 60_000)}m`;
-  else if (abs < units[3][0]) label = `${Math.floor(abs / 3_600_000)}h`;
-  else label = `${Math.floor(abs / 86_400_000)}d`;
+  if (minutes < 60) {
+    label = `${minutes}m`;
+  } else if (hours < 24) {
+    const remainingMinutes = minutes % 60;
+    label = remainingMinutes > 0 ? `${hours}h ${remainingMinutes}m` : `${hours}h`;
+  } else {
+    const remainingHours = hours % 24;
+    label = remainingHours > 0 ? `${days}d ${remainingHours}h` : `${days}d`;
+  }
+
   return past ? `${label} ago` : `in ${label}`;
 }
 

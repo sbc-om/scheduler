@@ -68,7 +68,7 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "panel-surface w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
+        "sidebar-surface w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
         mobile ? "flex h-full" : "hidden md:flex",
         className,
       )}
