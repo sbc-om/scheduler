@@ -130,14 +130,14 @@ export default async function ApiKeysPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Building2 className="h-4 w-4 text-cyan-600 dark:text-cyan-300" />
-              Tenant credentials
+              Organization credentials
             </CardTitle>
             <p className="text-xs text-muted-foreground">
               Use these values when configuring SDKs, webhooks, or CI pipelines.
             </p>
           </CardHeader>
           <CardContent className="grid gap-3 md:grid-cols-2">
-            <Field label="Tenant">
+            <Field label="Organization">
               <div className="flex items-center justify-between gap-2 rounded-xl border border-border bg-muted/40 px-3 py-2.5">
                 <div className="min-w-0">
                   <div className="truncate text-sm font-medium">
@@ -160,8 +160,8 @@ export default async function ApiKeysPage() {
                 <CopyButton value={tenant?.slug ?? ""} label="slug" size="sm" />
               </div>
             </Field>
-            <Field label="Tenant ID">
-              <CopyField value={tenant?.id ?? ""} label="tenant id" />
+            <Field label="Organization ID">
+              <CopyField value={tenant?.id ?? ""} label="organization id" />
             </Field>
             <Field label="API base URL">
               <CopyField value={env.APP_URL} label="base URL" />

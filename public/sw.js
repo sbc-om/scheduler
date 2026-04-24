@@ -4,8 +4,8 @@ self.addEventListener("push", (event) => {
   const options = {
     body: payload.body || "You have a new workflow notification.",
     data: payload.data || {},
-    icon: "/favicon.ico",
-    badge: "/favicon.ico",
+    icon: "/icons/icon-192.png",
+    badge: "/icons/icon-64.png",
   };
 
   event.waitUntil(self.registration.showNotification(title, options));

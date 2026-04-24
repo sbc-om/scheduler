@@ -10,11 +10,12 @@ import {
   Bell,
   KeyRound,
   Settings,
+  Building2,
   LogOut,
-  Sparkles,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BrandMark } from "@/components/app/brand-mark";
 
 type NavItem = {
   href: string;
@@ -40,6 +41,7 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
     items: [
       { href: "/notifications", label: "Notifications", icon: Bell },
       { href: "/api-keys", label: "API Keys", icon: KeyRound },
+      { href: "/organizations", label: "Organizations", icon: Building2 },
       { href: "/settings", label: "Settings", icon: Settings },
     ],
   },
@@ -73,14 +75,8 @@ export function Sidebar({
     >
       {/* Brand / workspace */}
       <div className="flex h-20 items-center gap-3 border-b border-sidebar-border px-5">
-        <div
-          className="relative grid h-10 w-10 place-items-center rounded-2xl text-white shadow-lg shadow-primary/20"
-          style={{
-            background:
-              "linear-gradient(135deg, hsl(250 90% 68%), hsl(217 91% 60%))",
-          }}
-        >
-          <Sparkles className="h-4 w-4" />
+        <div className="relative grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white/90 ring-1 ring-border/50 shadow-sm">
+          <BrandMark size={32} priority />
         </div>
         <div className="min-w-0">
           <div className="text-[13px] font-semibold leading-tight text-sidebar-foreground">

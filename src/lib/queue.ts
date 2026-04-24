@@ -19,12 +19,25 @@ export async function getBoss(): Promise<PgBoss> {
   const boss = new PgBoss({
     connectionString: env.DATABASE_URL,
     schema: env.PG_BOSS_SCHEMA,
+    max: env.PG_BOSS_POOL_MAX,
   });
 
   global.__pgBossReady = boss.start().then(async (instance) => {
     logger.info("pg-boss started");
-    await instance.createQueue(QUEUE_EXECUTE_WORKFLOW);
-    await instance.createQueue(QUEUE_DEAD_LETTER);
+    // Execute queue: aggressive retention tuning to keep hot tables small
+    // under very high job throughput. The dead-letter queue keeps records
+    // longer because operators need them for incident review.
+    await instance.createQueue(QUEUE_EXECUTE_WORKFLOW, {
+      policy: "standard",
+      retryLimit: 3,
+      retryBackoff: true,
+      retryDelay: 30,
+      deleteAfterSeconds: 60 * 60 * 24, // 1 day of completed-job history
+    });
+    await instance.createQueue(QUEUE_DEAD_LETTER, {
+      policy: "standard",
+      deleteAfterSeconds: 60 * 60 * 24 * 30, // 30 days for forensics
+    });
     global.__pgBoss = instance;
     return instance;
   });

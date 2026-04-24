@@ -1,6 +1,6 @@
-import { Sparkles } from "lucide-react";
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/lib/auth";
+import { BrandMark } from "@/components/app/brand-mark";
 import { LoginForm } from "./login-form";
 
 export default async function LoginPage() {
@@ -19,8 +19,8 @@ export default async function LoginPage() {
           }}
         />
         <div className="relative flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl grid place-items-center bg-white/10 backdrop-blur ring-1 ring-white/20">
-            <Sparkles className="h-5 w-5" />
+          <div className="h-10 w-10 rounded-xl grid place-items-center bg-white/95 ring-1 ring-white/30 shadow-sm">
+            <BrandMark size={30} priority />
           </div>
           <div className="text-base font-semibold tracking-tight">Scheduler</div>
         </div>
@@ -57,14 +57,8 @@ export default async function LoginPage() {
       <div className="flex items-center justify-center p-6 sm:p-12 bg-background">
         <div className="w-full max-w-sm space-y-7">
           <div className="lg:hidden flex items-center gap-3">
-            <div
-              className="h-10 w-10 rounded-xl grid place-items-center text-white shadow-md"
-              style={{
-                background:
-                  "linear-gradient(135deg, hsl(250 90% 68%), hsl(217 91% 60%))",
-              }}
-            >
-              <Sparkles className="h-5 w-5" />
+            <div className="h-10 w-10 rounded-xl grid place-items-center bg-card ring-1 ring-border shadow-sm">
+              <BrandMark size={30} priority />
             </div>
             <div className="text-lg font-semibold">Scheduler</div>
           </div>

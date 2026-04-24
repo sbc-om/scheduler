@@ -172,16 +172,33 @@ export async function claimDueSchedules(
   now: Date = new Date(),
 ): Promise<ScheduleRow[]> {
   return withTransaction(async (client) => {
+    // Fairness + locking in two steps, because Postgres forbids FOR UPDATE
+    // together with DISTINCT ON. Step 1: pick at most one candidate per
+    // tenant (cheap index scan). Step 2: lock the surviving rows with
+    // SKIP LOCKED so concurrent leaders never collide.
     const r = await client.query<ScheduleRow>(
-      `SELECT * FROM schedules
-        WHERE status = 'active'
-          AND next_run_at IS NOT NULL
-          AND next_run_at <= $1
-          AND (start_at IS NULL OR start_at <= $1)
-          AND (end_at IS NULL OR end_at > $1)
-        ORDER BY next_run_at ASC
-        LIMIT $2
-        FOR UPDATE SKIP LOCKED`,
+      `WITH candidates AS (
+         SELECT DISTINCT ON (tenant_id) id
+           FROM schedules
+          WHERE status = 'active'
+            AND next_run_at IS NOT NULL
+            AND next_run_at <= $1
+            AND (start_at IS NULL OR start_at <= $1)
+            AND (end_at IS NULL OR end_at > $1)
+          ORDER BY tenant_id, priority ASC, next_run_at ASC
+       ),
+       locked AS (
+         SELECT s.*
+           FROM schedules s
+           JOIN candidates c ON c.id = s.id
+          WHERE s.status = 'active'
+            AND s.next_run_at IS NOT NULL
+            AND s.next_run_at <= $1
+          ORDER BY s.priority ASC, s.next_run_at ASC
+          LIMIT $2
+          FOR UPDATE OF s SKIP LOCKED
+       )
+       SELECT * FROM locked`,
       [now, limit],
     );
     if (r.rows.length === 0) return [];
