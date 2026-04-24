@@ -15,6 +15,7 @@ import {
   countUserNotifications,
   listUserNotifications,
 } from "@/modules/notifications/repository";
+import { NotificationReadSync } from "./read-sync";
 
 function getNotificationVisual(title: string, message: string) {
   const text = `${title} ${message}`.toLowerCase();
@@ -80,6 +81,7 @@ export default async function NotificationsPage({
 
   return (
     <div className="space-y-6">
+      <NotificationReadSync hasUnread={items.some((item) => !item.read_at)} />
       <PageHeader title="Notifications" description="In-app alerts from workflow steps and runtime events." />
       <Card>
         <CardHeader>

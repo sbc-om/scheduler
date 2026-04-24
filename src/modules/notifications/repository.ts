@@ -119,6 +119,20 @@ export async function markNotificationRead(input: {
   );
 }
 
+export async function markAllNotificationsRead(input: {
+  tenantId: string;
+  userId: string;
+}): Promise<void> {
+  await query(
+    `UPDATE in_app_notifications
+        SET read_at = COALESCE(read_at, now())
+      WHERE tenant_id = $1
+        AND user_id = $2
+        AND read_at IS NULL`,
+    [input.tenantId, input.userId],
+  );
+}
+
 export async function upsertPushSubscription(input: {
   tenantId: string;
   userId: string;

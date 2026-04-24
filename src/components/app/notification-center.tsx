@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Bell } from "lucide-react";
 
 export function NotificationCenter() {
+  const pathname = usePathname();
   const [unread, setUnread] = useState(0);
 
   useEffect(() => {
@@ -20,10 +22,18 @@ export function NotificationCenter() {
     }
 
     void loadUnread();
+
+    function handleUnread(event: Event) {
+      const customEvent = event as CustomEvent<{ unread?: number }>;
+      setUnread(typeof customEvent.detail?.unread === "number" ? customEvent.detail.unread : 0);
+    }
+
+    window.addEventListener("notifications:unread", handleUnread as EventListener);
     return () => {
       cancelled = true;
+      window.removeEventListener("notifications:unread", handleUnread as EventListener);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <div className="relative">
