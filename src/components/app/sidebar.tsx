@@ -48,7 +48,7 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
 ];
 
 export function Sidebar({
-  tenant,
+  tenant: _tenant,
   user,
   className,
   mobile,
@@ -68,23 +68,17 @@ export function Sidebar({
   return (
     <aside
       className={cn(
-        "sidebar-surface w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground",
+        "sidebar-surface w-[17.5rem] shrink-0 flex-col border border-sidebar-border/80 bg-sidebar text-sidebar-foreground",
         mobile ? "flex h-full" : "hidden md:flex",
         className,
       )}
     >
-      {/* Brand / workspace */}
-      <div className="flex h-20 items-center gap-3 border-b border-sidebar-border px-5">
-        <div className="relative grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white/90 ring-1 ring-border/50 shadow-sm">
+      <div className="flex h-24 items-center gap-3 border-b border-sidebar-border/80 px-5">
+        <div className="relative grid h-12 w-12 shrink-0 place-items-center rounded-[1.35rem] bg-white/90 ring-1 ring-border/50 shadow-[0_16px_32px_-20px_rgba(15,23,42,0.45)] dark:bg-white/10 dark:ring-white/10">
           <BrandMark size={32} priority />
         </div>
-        <div className="min-w-0">
-          <div className="text-[13px] font-semibold leading-tight text-sidebar-foreground">
-            Scheduler
-          </div>
-          <div className="truncate text-[11px] leading-tight text-sidebar-foreground/60">
-            {tenant.name}
-          </div>
+        <div className="min-w-0 text-[13px] font-semibold uppercase tracking-[0.22em] leading-tight text-sidebar-foreground/72">
+          Scheduler
         </div>
         {mobile ? (
           <button
@@ -98,14 +92,13 @@ export function Sidebar({
         ) : null}
       </div>
 
-      {/* Nav */}
-      <nav className="scrollbar-thin flex-1 space-y-6 overflow-y-auto px-4 py-5">
+      <nav className="scrollbar-thin flex-1 space-y-7 overflow-y-auto px-4 py-6">
         {GROUPS.map((group) => (
           <div key={group.label}>
-            <div className="mb-2 px-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-sidebar-foreground/42">
+            <div className="mb-2 px-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-sidebar-foreground/36">
               {group.label}
             </div>
-            <ul className="space-y-0.5">
+            <ul className="space-y-1.5">
               {group.items.map((item) => {
                 const Icon = item.icon;
                 const active =
@@ -116,32 +109,26 @@ export function Sidebar({
                     <Link
                       href={item.href}
                       onClick={onNavigate}
+                      data-active={active}
                       className={cn(
-                        "group relative flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all",
+                        "nav-tile group relative flex items-center gap-3 rounded-[1.1rem] px-3.5 py-3 text-[13px] font-medium transition-all",
                         active
-                          ? "bg-sidebar-active/10 text-sidebar-foreground ring-1 ring-sidebar-active/15"
-                          : "text-sidebar-foreground/78 hover:bg-sidebar-foreground/6 hover:text-sidebar-foreground",
+                          ? "bg-sidebar-active/10 text-sidebar-foreground ring-1 ring-sidebar-active/20 shadow-[0_18px_30px_-24px_rgba(234,88,63,0.8)]"
+                          : "text-sidebar-foreground/78 hover:bg-sidebar-foreground/5 hover:text-sidebar-foreground",
                       )}
                     >
-                      {active ? (
-                        <span
-                          aria-hidden
-                          className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full"
-                          style={{
-                            background:
-                              "linear-gradient(180deg, hsl(46 100% 60%), hsl(40 100% 50%))",
-                          }}
-                        />
-                      ) : null}
                       <Icon
                         className={cn(
                           "h-4 w-4 shrink-0 transition-colors",
                           active
                             ? "text-sidebar-active"
-                            : "text-sidebar-foreground/52 group-hover:text-sidebar-foreground",
+                            : "text-sidebar-foreground/48 group-hover:text-sidebar-foreground",
                         )}
                       />
                       <span className="truncate">{item.label}</span>
+                      {active ? (
+                        <span className="ml-auto h-2 w-2 rounded-full bg-sidebar-active shadow-[0_0_0_4px_rgba(234,88,63,0.12)]" />
+                      ) : null}
                     </Link>
                   </li>
                 );
@@ -155,15 +142,15 @@ export function Sidebar({
       <form
         action="/api/auth/logout"
         method="post"
-        className="border-t border-sidebar-border p-4"
+        className="border-t border-sidebar-border/80 p-4"
         onSubmit={onNavigate}
       >
-        <div className="flex items-center gap-3 rounded-xl border border-sidebar-border/80 bg-sidebar-foreground/[0.03] px-3 py-3">
+        <div className="flex items-center gap-3 rounded-[1.4rem] border border-sidebar-border/80 bg-sidebar-foreground/[0.03] px-3 py-3.5">
           <div
             className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-xs font-semibold text-white"
             style={{
               background:
-                "linear-gradient(135deg, hsl(46 100% 55%), hsl(36 100% 48%))",
+                "linear-gradient(135deg, hsl(8 88% 58%), hsl(188 70% 44%))",
             }}
           >
             {initial}
@@ -179,7 +166,7 @@ export function Sidebar({
           <button
             type="submit"
             title="Sign out"
-            className="grid h-8 w-8 place-items-center rounded-lg text-sidebar-foreground/60 transition-colors hover:bg-sidebar-foreground/8 hover:text-sidebar-foreground"
+            className="grid h-8 w-8 place-items-center rounded-xl text-sidebar-foreground/60 transition-colors hover:bg-sidebar-foreground/8 hover:text-sidebar-foreground"
           >
             <LogOut className="h-4 w-4" />
           </button>

@@ -40,7 +40,7 @@ export function NotificationCenter() {
       <Link
         href="/notifications"
         aria-label="Open notifications"
-        className="relative grid h-9 w-9 place-items-center rounded-md border border-border bg-card text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
+        className="relative grid h-10 w-10 place-items-center rounded-2xl border border-border/80 bg-card/70 text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
       >
         <Bell className="h-4 w-4" />
         {unread > 0 ? (

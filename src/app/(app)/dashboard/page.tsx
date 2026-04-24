@@ -4,7 +4,9 @@ import {
   ArrowUpRight,
   CalendarClock,
   CheckCircle2,
+  Clock3,
   PlayCircle,
+  Sparkles,
   XCircle,
 } from "lucide-react";
 import { requireSessionUser } from "@/lib/auth";
@@ -66,8 +68,36 @@ export default async function DashboardPage() {
       <PageHeader
         title={`Welcome back, ${greetingName(user.fullName ?? user.email)}`}
         eyebrow="Operations"
-        description="Live status across your workflows, schedules and worker fleet."
       />
+
+      <Card className="hero-glow overflow-hidden border-border/70">
+        <CardContent className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="absolute right-0 top-0 h-48 w-48 translate-x-10 -translate-y-10 rounded-full bg-primary/18 blur-3xl" />
+          <div className="absolute bottom-0 right-16 h-28 w-28 rounded-full bg-accent/80 blur-3xl dark:bg-accent/20" />
+          <div className="relative max-w-2xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              Live ops
+            </div>
+            <div className="mt-4 flex items-start gap-4">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/50 bg-white/60 shadow-sm dark:border-white/10 dark:bg-white/5">
+                <Sparkles className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <h2 className="max-w-2xl text-[2rem] font-semibold leading-[1.02] tracking-[-0.05em] sm:text-[2.35rem]">
+                  One view for live workflows.
+                </h2>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground/90">
+                  Track runs, workers, and delivery health.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="relative grid grid-cols-2 gap-3 sm:min-w-[20rem] sm:grid-cols-2">
+            <HeroMetric label="Queued" value={s.queued} icon={Clock3} />
+            <HeroMetric label="Schedules" value={upcoming.length} icon={CalendarClock} />
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
@@ -224,30 +254,52 @@ const accentStyles: Record<
   { tile: string; icon: string; glow: string; edge: string }
 > = {
   violet: {
-    tile: "bg-[linear-gradient(135deg,hsl(250_100%_98%),hsl(250_100%_95%))] dark:bg-[linear-gradient(135deg,hsl(250_50%_22%),hsl(250_45%_16%))]",
-    icon: "text-[hsl(250_80%_55%)] dark:text-[hsl(250_90%_78%)]",
-    glow: "from-[hsl(250_90%_60%/0.24)] via-[hsl(250_90%_64%/0.08)] to-transparent",
-    edge: "border-[hsl(250_80%_88%)] dark:border-[hsl(250_45%_26%)]",
+    tile: "bg-[linear-gradient(135deg,hsl(188_100%_97%),hsl(198_96%_92%))] dark:bg-[linear-gradient(135deg,hsl(196_42%_22%),hsl(204_42%_15%))]",
+    icon: "text-[hsl(196_72%_42%)] dark:text-[hsl(192_80%_74%)]",
+    glow: "from-[hsl(188_88%_52%/0.22)] via-[hsl(198_88%_56%/0.08)] to-transparent",
+    edge: "border-[hsl(192_66%_84%)] dark:border-[hsl(198_30%_25%)]",
   },
   emerald: {
-    tile: "bg-[linear-gradient(135deg,hsl(152_70%_97%),hsl(152_65%_93%))] dark:bg-[linear-gradient(135deg,hsl(152_45%_20%),hsl(152_45%_15%))]",
-    icon: "text-[hsl(152_60%_38%)] dark:text-[hsl(152_60%_68%)]",
-    glow: "from-[hsl(152_70%_45%/0.24)] via-[hsl(152_70%_46%/0.08)] to-transparent",
-    edge: "border-[hsl(152_42%_85%)] dark:border-[hsl(152_38%_24%)]",
+    tile: "bg-[linear-gradient(135deg,hsl(154_80%_97%),hsl(168_70%_92%))] dark:bg-[linear-gradient(135deg,hsl(156_38%_22%),hsl(166_38%_15%))]",
+    icon: "text-[hsl(158_60%_34%)] dark:text-[hsl(162_64%_70%)]",
+    glow: "from-[hsl(156_62%_44%/0.22)] via-[hsl(168_62%_48%/0.08)] to-transparent",
+    edge: "border-[hsl(160_44%_84%)] dark:border-[hsl(160_28%_24%)]",
   },
   rose: {
-    tile: "bg-[linear-gradient(135deg,hsl(0_100%_98%),hsl(0_78%_95%))] dark:bg-[linear-gradient(135deg,hsl(0_42%_21%),hsl(0_42%_15%))]",
-    icon: "text-[hsl(0_72%_51%)] dark:text-[hsl(0_82%_72%)]",
-    glow: "from-[hsl(0_85%_58%/0.24)] via-[hsl(0_85%_60%/0.08)] to-transparent",
-    edge: "border-[hsl(0_64%_88%)] dark:border-[hsl(0_34%_26%)]",
+    tile: "bg-[linear-gradient(135deg,hsl(8_100%_98%),hsl(18_88%_93%))] dark:bg-[linear-gradient(135deg,hsl(10_42%_24%),hsl(6_42%_16%))]",
+    icon: "text-[hsl(8_84%_54%)] dark:text-[hsl(8_82%_72%)]",
+    glow: "from-[hsl(8_88%_60%/0.24)] via-[hsl(18_88%_58%/0.08)] to-transparent",
+    edge: "border-[hsl(14_74%_86%)] dark:border-[hsl(8_28%_27%)]",
   },
   amber: {
-    tile: "bg-[linear-gradient(135deg,hsl(40_100%_97%),hsl(38_95%_93%))] dark:bg-[linear-gradient(135deg,hsl(38_42%_22%),hsl(38_42%_16%))]",
-    icon: "text-[hsl(38_92%_45%)] dark:text-[hsl(38_92%_67%)]",
-    glow: "from-[hsl(38_90%_52%/0.24)] via-[hsl(38_90%_54%/0.08)] to-transparent",
-    edge: "border-[hsl(38_74%_86%)] dark:border-[hsl(38_34%_26%)]",
+    tile: "bg-[linear-gradient(135deg,hsl(34_100%_97%),hsl(42_86%_92%))] dark:bg-[linear-gradient(135deg,hsl(34_38%_23%),hsl(42_32%_16%))]",
+    icon: "text-[hsl(28_88%_46%)] dark:text-[hsl(36_86%_68%)]",
+    glow: "from-[hsl(28_90%_54%/0.22)] via-[hsl(40_86%_54%/0.08)] to-transparent",
+    edge: "border-[hsl(36_70%_85%)] dark:border-[hsl(36_28%_25%)]",
   },
 };
+
+function HeroMetric({
+  label,
+  value,
+  icon: Icon,
+}: {
+  label: string;
+  value: number | string;
+  icon: React.ComponentType<{ className?: string }>;
+}) {
+  return (
+    <div className="rounded-[1.35rem] border border-border/70 bg-white/65 px-4 py-3.5 shadow-[0_14px_30px_-24px_rgba(15,23,42,0.45)] dark:bg-white/5">
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+          {label}
+        </div>
+        <Icon className="h-4 w-4 text-primary" />
+      </div>
+      <div className="mt-3 text-2xl font-semibold tracking-[-0.04em] tabular-nums">{value}</div>
+    </div>
+  );
+}
 
 function StatCard({
   accent,

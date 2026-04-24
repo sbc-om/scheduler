@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import { Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThemeProvider, themeInitScript } from "@/components/app/theme-provider";
+import "@fontsource/inter";
 import "./globals.css";
-
-const sbcSans = localFont({
-  src: "../../public/fonts/sbc.otf",
-  variable: "--font-sbc-sans",
-  display: "swap",
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -62,7 +56,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${sbcSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistMono.variable} h-full antialiased`}
     >
       <head>
         <script

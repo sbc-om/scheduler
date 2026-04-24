@@ -3,77 +3,72 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Warm cream canvas + near-black ink + saturated amber accent.
-     The goal is an editorial, high-contrast look that reads as premium
-     rather than generic Tailwind. */
-  --background: 44 38% 96%;
-  --foreground: 0 0% 8%;
-  --muted: 42 22% 91%;
-  --muted-foreground: 0 0% 38%;
+  --background: 28 31% 96%;
+  --foreground: 220 22% 12%;
+  --muted: 28 24% 90%;
+  --muted-foreground: 220 12% 40%;
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 8%;
+  --card-foreground: 220 22% 12%;
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 8%;
-  --border: 40 18% 85%;
-  --input: 40 18% 85%;
-  --ring: 46 100% 50%;
-  --primary: 46 100% 50%;
-  --primary-foreground: 0 0% 8%;
-  --primary-soft: 48 100% 92%;
-  --secondary: 42 26% 92%;
-  --secondary-foreground: 0 0% 10%;
-  --accent: 42 26% 90%;
-  --accent-foreground: 0 0% 10%;
-  --destructive: 4 80% 52%;
+  --popover-foreground: 220 22% 12%;
+  --border: 24 23% 82%;
+  --input: 24 23% 82%;
+  --ring: 8 85% 58%;
+  --primary: 8 85% 58%;
+  --primary-foreground: 0 0% 100%;
+  --primary-soft: 10 100% 95%;
+  --secondary: 178 26% 90%;
+  --secondary-foreground: 184 28% 18%;
+  --accent: 194 42% 92%;
+  --accent-foreground: 206 36% 18%;
+  --destructive: 0 72% 54%;
   --destructive-foreground: 0 0% 100%;
-  --success: 152 62% 38%;
+  --success: 154 54% 34%;
   --success-foreground: 0 0% 100%;
-  --warning: 26 95% 52%;
+  --warning: 30 92% 52%;
   --warning-foreground: 0 0% 10%;
-  --info: 215 16% 38%;
+  --info: 198 64% 38%;
   --info-foreground: 0 0% 100%;
-  --radius: 0.55rem;
+  --radius: 0.95rem;
 
-  /* Dark sidebar even in light mode — a signature Linear/Arc pattern that
-     instantly distances the product from stock Tailwind admin templates. */
-  --sidebar-bg: 0 0% 6%;
-  --sidebar-border: 0 0% 14%;
-  --sidebar-foreground: 40 18% 90%;
-  --sidebar-active: 46 100% 55%;
+  --sidebar-bg: 0 0% 100%;
+  --sidebar-border: 24 22% 82%;
+  --sidebar-foreground: 220 20% 16%;
+  --sidebar-active: 8 85% 58%;
 }
 
 .dark {
-  --background: 0 0% 4%;
-  --foreground: 40 14% 94%;
-  --muted: 0 0% 10%;
-  --muted-foreground: 40 8% 62%;
-  --card: 0 0% 7%;
-  --card-foreground: 40 14% 94%;
-  --popover: 0 0% 8%;
-  --popover-foreground: 40 14% 94%;
-  --border: 0 0% 14%;
-  --input: 0 0% 14%;
-  --ring: 46 100% 58%;
-  --primary: 46 100% 58%;
-  --primary-foreground: 0 0% 6%;
-  --primary-soft: 46 70% 14%;
-  --secondary: 0 0% 10%;
-  --secondary-foreground: 40 14% 94%;
-  --accent: 0 0% 12%;
-  --accent-foreground: 40 14% 94%;
-  --destructive: 4 78% 58%;
+  --background: 218 30% 8%;
+  --foreground: 28 22% 94%;
+  --muted: 220 19% 13%;
+  --muted-foreground: 28 10% 68%;
+  --card: 220 24% 10%;
+  --card-foreground: 28 22% 94%;
+  --popover: 220 22% 11%;
+  --popover-foreground: 28 22% 94%;
+  --border: 220 16% 18%;
+  --input: 220 16% 18%;
+  --ring: 8 88% 62%;
+  --primary: 8 88% 62%;
+  --primary-foreground: 0 0% 100%;
+  --primary-soft: 8 54% 18%;
+  --secondary: 184 22% 16%;
+  --secondary-foreground: 180 36% 86%;
+  --accent: 204 26% 16%;
+  --accent-foreground: 198 38% 88%;
+  --destructive: 0 74% 60%;
   --destructive-foreground: 0 0% 100%;
-  --success: 152 58% 50%;
-  --success-foreground: 0 0% 6%;
-  --warning: 28 95% 58%;
-  --warning-foreground: 0 0% 6%;
-  --info: 215 14% 68%;
-  --info-foreground: 0 0% 6%;
+  --success: 154 52% 46%;
+  --success-foreground: 0 0% 100%;
+  --warning: 30 92% 58%;
+  --warning-foreground: 0 0% 10%;
+  --info: 198 60% 62%;
+  --info-foreground: 218 30% 8%;
 
-  --sidebar-bg: 0 0% 3%;
-  --sidebar-border: 0 0% 11%;
-  --sidebar-foreground: 40 14% 78%;
-  --sidebar-active: 46 100% 58%;
+  --sidebar-bg: 220 24% 11%;
+  --sidebar-border: 220 16% 19%;
+  --sidebar-foreground: 28 18% 86%;
+  --sidebar-active: 8 88% 62%;
 }
 
 @theme inline {
@@ -110,7 +105,7 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  --font-sans: var(--font-sbc-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
@@ -125,7 +120,10 @@
   }
 
   body {
-    background: hsl(var(--background));
+    background:
+      radial-gradient(1000px 520px at 10% -8%, hsl(8 90% 56% / 0.16), transparent 64%),
+      radial-gradient(820px 480px at 95% 8%, hsl(188 70% 56% / 0.12), transparent 58%),
+      linear-gradient(180deg, hsl(28 38% 98%), hsl(var(--background)) 24%, hsl(var(--background)));
     color: hsl(var(--foreground));
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
@@ -159,68 +157,162 @@
   }
 
   .app-bg {
-    /* Warm cream canvas with a single amber bloom in the corner and subtle
-       diagonal cream wash. No muddy blue radials — the colour story is
-       strictly black / cream / amber. */
     background:
-      radial-gradient(1200px 620px at 108% -14%, hsl(46 100% 58% / 0.22), transparent 60%),
-      radial-gradient(900px 520px at -12% 118%, hsl(0 0% 0% / 0.05), transparent 60%),
-      linear-gradient(180deg, hsl(44 45% 98% / 0.85), transparent 30%),
-      linear-gradient(135deg, hsl(44 40% 97%), hsl(42 28% 93%));
+      linear-gradient(125deg, hsl(0 0% 100% / 0.58), transparent 44%),
+      radial-gradient(760px 480px at -5% 100%, hsl(8 88% 58% / 0.16), transparent 62%),
+      radial-gradient(720px 420px at 102% 0%, hsl(188 78% 48% / 0.12), transparent 58%),
+      linear-gradient(180deg, hsl(26 40% 98%), hsl(28 28% 95%) 48%, hsl(32 22% 92%));
   }
 
   .dark .app-bg {
     background:
-      radial-gradient(1200px 620px at 108% -14%, hsl(46 100% 58% / 0.14), transparent 60%),
-      radial-gradient(900px 520px at -12% 118%, hsl(46 100% 55% / 0.05), transparent 60%),
-      linear-gradient(180deg, hsl(0 0% 100% / 0.015), transparent 24%),
+      linear-gradient(180deg, hsl(0 0% 100% / 0.02), transparent 18%),
+      radial-gradient(820px 420px at 0% 100%, hsl(8 88% 62% / 0.16), transparent 58%),
+      radial-gradient(760px 420px at 100% 0%, hsl(188 72% 52% / 0.1), transparent 58%),
       hsl(var(--background));
   }
 
   .panel-surface {
-    background: hsl(var(--card) / 0.84);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 18px 40px -28px rgb(15 23 42 / 0.18), 0 4px 12px -8px rgb(15 23 42 / 0.08);
+    background:
+      linear-gradient(180deg, hsl(var(--card) / 0.92), hsl(var(--card) / 0.82)),
+      hsl(var(--card) / 0.88);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 60px -34px rgb(15 23 42 / 0.2), 0 8px 24px -18px rgb(15 23 42 / 0.12);
   }
 
   .sidebar-surface {
     background:
-      radial-gradient(520px 280px at 0% 0%, hsl(var(--sidebar-active) / 0.08), transparent 60%),
+      linear-gradient(180deg, hsl(0 0% 100% / 0.8), hsl(0 0% 100% / 0.62)),
+      radial-gradient(440px 260px at 10% 0%, hsl(var(--sidebar-active) / 0.12), transparent 64%),
       linear-gradient(180deg, hsl(var(--sidebar-bg)), hsl(var(--sidebar-bg)));
     box-shadow:
-      inset -1px 0 0 hsl(var(--sidebar-border) / 0.85),
-      16px 0 36px -30px rgb(0 0 0 / 0.35);
+      inset 0 1px 0 hsl(0 0% 100% / 0.7),
+      0 24px 60px -40px rgb(15 23 42 / 0.25);
   }
 
   .dark .panel-surface {
-    background: hsl(var(--card) / 0.9);
-    box-shadow: 0 18px 42px -24px rgb(2 6 23 / 0.6), 0 6px 20px -12px rgb(2 6 23 / 0.5);
+    background:
+      linear-gradient(180deg, hsl(var(--card) / 0.9), hsl(var(--card) / 0.78)),
+      hsl(var(--card) / 0.82);
+    box-shadow: 0 24px 56px -28px rgb(2 6 23 / 0.72), 0 10px 28px -18px rgb(2 6 23 / 0.54);
   }
 
   .dark .sidebar-surface {
     background:
-      radial-gradient(560px 320px at 0% 0%, hsl(var(--sidebar-active) / 0.08), transparent 60%),
+      linear-gradient(180deg, hsl(0 0% 100% / 0.04), transparent 30%),
+      radial-gradient(520px 300px at 0% 0%, hsl(var(--sidebar-active) / 0.1), transparent 60%),
       linear-gradient(180deg, hsl(var(--sidebar-bg)), hsl(var(--sidebar-bg)));
     box-shadow:
-      inset -1px 0 0 hsl(var(--sidebar-border) / 0.9),
-      20px 0 44px -30px rgb(0 0 0 / 0.6);
+      inset 0 1px 0 hsl(0 0% 100% / 0.05),
+      0 28px 64px -34px rgb(0 0 0 / 0.6);
   }
 
   .metric-card {
-    background: linear-gradient(135deg, hsl(var(--card) / 0.98), hsl(var(--card) / 0.9));
+    background:
+      linear-gradient(140deg, hsl(var(--card) / 0.98), hsl(var(--card) / 0.88)),
+      hsl(var(--card) / 0.92);
   }
 
   .dark .metric-card {
-    background: linear-gradient(135deg, hsl(var(--card) / 0.96), hsl(var(--muted) / 0.92));
+    background:
+      linear-gradient(140deg, hsl(var(--card) / 0.96), hsl(var(--muted) / 0.92)),
+      hsl(var(--card) / 0.92);
   }
 
   .brand-bg {
-    /* Signature brand surface: amber glow over rich black, used on login and
-       marketing chrome to reinforce the palette. */
     background:
-      radial-gradient(820px 520px at 18% 18%, hsl(46 100% 58% / 0.55), transparent 60%),
-      radial-gradient(620px 420px at 82% 82%, hsl(40 100% 62% / 0.22), transparent 55%),
-      linear-gradient(135deg, hsl(0 0% 6%), hsl(0 0% 2%));
+      radial-gradient(820px 520px at 18% 18%, hsl(8 88% 58% / 0.56), transparent 60%),
+      radial-gradient(620px 420px at 82% 82%, hsl(188 78% 54% / 0.2), transparent 55%),
+      linear-gradient(135deg, hsl(220 24% 12%), hsl(220 30% 7%));
+  }
+
+  .shell-grid {
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: -1px -1px;
+  }
+
+  .shell-frame {
+    position: relative;
+    border: 1px solid hsl(var(--border) / 0.72);
+    background: hsl(0 0% 100% / 0.42);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 28px 80px -42px rgb(15 23 42 / 0.24);
+  }
+
+  .shell-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(135deg, hsl(0 0% 100% / 0.42), transparent 26%),
+      linear-gradient(315deg, hsl(var(--primary) / 0.06), transparent 22%);
+  }
+
+  .dark .shell-frame {
+    background: hsl(220 20% 10% / 0.56);
+    box-shadow: 0 28px 80px -34px rgb(2 6 23 / 0.66);
+  }
+
+  .dark .shell-frame::before {
+    background:
+      linear-gradient(135deg, hsl(0 0% 100% / 0.05), transparent 26%),
+      linear-gradient(315deg, hsl(var(--primary) / 0.12), transparent 22%);
+  }
+
+  .topbar-surface {
+    background:
+      linear-gradient(180deg, hsl(var(--card) / 0.82), hsl(var(--card) / 0.64)),
+      hsl(var(--card) / 0.72);
+    backdrop-filter: blur(18px);
+  }
+
+  .dark .topbar-surface {
+    background:
+      linear-gradient(180deg, hsl(var(--card) / 0.84), hsl(var(--card) / 0.72)),
+      hsl(var(--card) / 0.78);
+  }
+
+  .cut-card {
+    clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
+  }
+
+  .nav-tile {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-tile::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--sidebar-active) / 0.42), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-tile:hover::after,
+  .nav-tile[data-active="true"]::after {
+    opacity: 1;
+  }
+
+  .hero-glow {
+    background:
+      radial-gradient(460px 240px at 10% 0%, hsl(var(--primary) / 0.18), transparent 65%),
+      radial-gradient(320px 220px at 90% 10%, hsl(var(--accent) / 0.42), transparent 58%),
+      linear-gradient(135deg, hsl(var(--card) / 0.96), hsl(var(--card) / 0.84));
+  }
+
+  .dark .hero-glow {
+    background:
+      radial-gradient(460px 240px at 10% 0%, hsl(var(--primary) / 0.2), transparent 65%),
+      radial-gradient(320px 220px at 90% 10%, hsl(var(--accent) / 0.22), transparent 58%),
+      linear-gradient(135deg, hsl(var(--card) / 0.96), hsl(var(--muted) / 0.92));
   }
 
   .card-hover {

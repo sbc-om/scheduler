@@ -243,7 +243,7 @@ export function BuilderClient({
   }
 
   return (
-    <div className="flex h-full min-h-0 flex-col overflow-hidden bg-background">
+    <div className="panel-surface flex h-full min-h-0 flex-col overflow-hidden rounded-[1.35rem] border border-border/70 bg-background/92 shadow-[0_24px_54px_-36px_rgba(15,23,42,0.45)]">
       <header className="panel-surface flex h-14 shrink-0 items-center gap-3 border-b border-border/60 px-4">
         <Button asChild variant="ghost" size="icon">
           <Link href={`/workflows/${workflowId}`}>
